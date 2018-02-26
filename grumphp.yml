@@ -1,0 +1,29 @@
+parameters:
+    hooks_dir: ./.grumphp/hooks
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+        phpunit:
+            always_execute: true
+            metadata:
+                priority: 100
+        composer: ~
+        #composer_require_checker: ~
+        phpcpd:
+          exclude: ['vendor', 'tests']
+        file_size:
+            max_size: 10M
+        git_blacklist:
+            keywords:
+                - "die("
+                - "var_dump("
+                - "exit;"
+
+        phpcsfixer: ~
+        phpparser: ~
+        phpstan: ~
+        phpversion:
+            project: '7.1'
+        phpmnd:
+            directory: src
+        securitychecker: ~

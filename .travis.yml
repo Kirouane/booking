@@ -1,0 +1,13 @@
+dist: trusty
+
+services:
+  - docker
+
+install:
+  - make setup
+  - eval "$(ssh-agent -s)"
+  - docker-compose up -d
+
+script:
+ - docker-compose run php composer install
+ - make test.behat.run
