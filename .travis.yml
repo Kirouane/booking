@@ -4,10 +4,10 @@ services:
   - docker
 
 install:
-  - make setup
   - eval "$(ssh-agent -s)"
+  - make setup
   - docker-compose up -d
 
 script:
  - docker-compose run php composer install
- - make test.behat.run
+ - make test.unit.run
