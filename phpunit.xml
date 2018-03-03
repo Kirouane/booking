@@ -4,8 +4,8 @@
         backupGlobals="true"
         cacheTokens="false">
     <testsuites>
-        <testsuite name="interval">
-            <directory>tests</directory>
+        <testsuite name="booking">
+            <directory>test</directory>
         </testsuite>
     </testsuites>
     <filter>
