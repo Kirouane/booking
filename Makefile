@@ -19,3 +19,6 @@ test.behat.run:
 #Runs unit tests
 test.unit.run:
 	docker-compose exec php  bin/phpunit
+
+test.newman.run:
+	docker-compose run newman newman run https://www.getpostman.com/collections/074d8af08f333beffdcc -g test/newman/environment.json
