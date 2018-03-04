@@ -56,6 +56,15 @@ services:
     networks:
       - "booking"
 
+  newman:
+    build:
+      context: ./.docker/newman
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - "booking"
+
 networks:
     booking:
         driver: bridge

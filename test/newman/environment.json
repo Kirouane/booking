@@ -1,0 +1,10 @@
+{
+  "values": [
+    {
+      "enabled": true,
+      "key": "host",
+      "value": "http:\/\/nginx\/",
+      "type": "text"
+    }
+  ]
+}

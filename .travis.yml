@@ -11,3 +11,4 @@ install:
 script:
  - docker-compose run php composer install
  - make test.unit.run
+ - make test.newman.run
