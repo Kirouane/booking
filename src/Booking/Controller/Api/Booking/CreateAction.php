@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Booking\Controller\Api\Booking;
 
 use Booking\Model\Booking;
-use Booking\Repository\Database\Booking as BookingRepository;
+use Booking\Service\Booking\Create as BookingService;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -14,17 +14,17 @@ use Ramsey\Uuid\Uuid;
 class CreateAction
 {
     /**
-     * @var BookingRepository
+     * @var BookingService
      */
-    private $repository;
+    private $service;
 
     /**
      * ListAction constructor.
-     * @param BookingRepository $resource
+     * @param BookingService $resource
      */
-    public function __construct(BookingRepository $resource)
+    public function __construct(BookingService $resource)
     {
-        $this->repository = $resource;
+        $this->service = $resource;
     }
 
     /**
@@ -39,7 +39,7 @@ class CreateAction
         $booking->setEnd($params['end']);
         $booking->setResourceName($params['resource_name']);
         return [
-            'data' => $this->repository->insert($booking)
+            'data' => ($this->service)($booking)
         ];
     }
 }

@@ -13,11 +13,23 @@ return [
 
     \Booking\Controller\Api\Booking\CreateAction::class => [
         \Booking\Controller\Api\Booking\CreateAction::class,
-        [\Booking\Repository\Database\Booking::class]
+        [\Booking\Service\Booking\Create::class]
     ],
+
+    //event
+    \Booking\Controller\Event\Booking\CreatedAction::class => \Booking\Controller\Event\Booking\CreatedAction::class,
 
     //services
     'db' =>  [\Zend\Db\Adapter\Adapter::class, [[require 'db.php']]],
+    'rabbitmq' => [PhpAmqpLib\Connection\AMQPStreamConnection::class, [['rabbitmq'], [5672], ['guest'], ['guest']]],
+    \Lib\RabbitMq\Client::class => [
+        \Lib\RabbitMq\Client::class,
+        ['rabbitmq', ['booking.topic']]
+    ],
+    \Lib\RabbitMq\Server::class => [
+        \Lib\RabbitMq\Server::class,
+        ['rabbitmq', ['booking.topic']]
+    ],
 
     \Booking\Repository\Database\Resource::TABLE_GATEWAY => [
         \Lib\TableGatewayFactory::class,
@@ -29,6 +41,10 @@ return [
         [\Booking\Repository\Database\Resource::TABLE_GATEWAY]
     ],
 
+    \Booking\Service\Booking\Create::class => [
+        \Booking\Service\Booking\Create::class,
+        [\Booking\Repository\Database\Booking::class, \Lib\RabbitMq\Client::class]
+    ],
     \Booking\Repository\Database\Booking::TABLE_GATEWAY => [
         \Lib\TableGatewayFactory::class,
         [\Zend\Hydrator\ClassMethods::class, \Booking\Model\Booking::class, \Booking\Repository\Database\Booking::TABLE],
