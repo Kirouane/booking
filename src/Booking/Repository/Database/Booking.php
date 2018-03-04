@@ -55,8 +55,8 @@ class Booking
     }
 
     /**
-     * @param \Booking\Model\Resource $resource
-     * @return \Booking\Model\Resource|null
+     * @param \Booking\Model\Booking $booking
+     * @return \Booking\Model\Booking|null
      */
     public function insert(\Booking\Model\Booking $booking): ?\Booking\Model\Booking
     {

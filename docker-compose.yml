@@ -65,6 +65,18 @@ services:
     networks:
       - "booking"
 
+  rabbitmq:
+    build:
+      context: ./.docker/rabbitmq
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    working_dir: /var/www/html
+    networks:
+      - "booking"
+
 networks:
     booking:
         driver: bridge
