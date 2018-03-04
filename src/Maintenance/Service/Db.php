@@ -88,7 +88,7 @@ class Db
         $table->addColumn(new Ddl\Column\Timestamp('start'));
         $table->addColumn(new Ddl\Column\Timestamp('end'));
         $table->addColumn(new Ddl\Column\Varchar('resource_name'));
-        $table->addColumn(new Ddl\Column\Varchar('location_name'));
+        //$table->addColumn(new Ddl\Column\Varchar('location_name'));
 
         $table->addConstraint(new Ddl\Constraint\PrimaryKey('id'));
         $table->addConstraint(new Ddl\Constraint\ForeignKey(
@@ -98,12 +98,12 @@ class Db
             'name'
         ));
 
-        $table->addConstraint(new Ddl\Constraint\ForeignKey(
+        /*$table->addConstraint(new Ddl\Constraint\ForeignKey(
             'booking_location_name_fkey',
             'location_name',
             'location',
             'name'
-        ));
+        ));*/
 
         return $table;
     }
